@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["lh3.googleusercontent.com"],
   },
+  experimental: {
+    incrementalCacheHandlerPath: "node_modules/.cache/next",
+  },
 };
 
 export default nextConfig;
