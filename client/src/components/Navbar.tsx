@@ -11,14 +11,15 @@ const Navbar = () => {
       {session && (
         <div className="flex flex-col items-center gap-2">
           <button 
-            className="px-4 py-1  text-white rounded-md bg-gray-700 hover:bg-gray-800 transition"
+            className="px-4 py-1 text-white rounded-md bg-gray-700 hover:bg-gray-800 transition"
             onClick={() => signOut()}
           >
             Logout
           </button>
           <Image
             className="rounded-full"
-            src={session.user?.image!}
+            // fallback value provided if image is undefined
+            src={session.user?.image ?? "/default-user.png"}
             alt="User Image"
             width={40}
             height={40}
