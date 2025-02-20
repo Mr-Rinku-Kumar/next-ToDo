@@ -34,3 +34,4 @@ const ToDo = ({ id, text, setUpdateUI }: ToDoProps) => {
 };
 
 export default ToDo;
+
