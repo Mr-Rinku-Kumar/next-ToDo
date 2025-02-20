@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { useSession } from "next-auth/react";
@@ -8,12 +7,16 @@ import axios from "axios";
 import { baseURL } from "@/utils/constant";
 import ToDo from "@/components/ToDo";
 
+interface ToDoItem {
+  _id: number;
+  toDo: string;
+}
+
 export default function Home() {
   const { data: session } = useSession();
   const [input, setInput] = useState("");
-  const [toDos, setToDos] = useState([]);
+  const [toDos, setToDos] = useState<ToDoItem[]>([]);
   const [updateUI, setUpdateUI] = useState(false);
-  
 
   useEffect(() => {
     axios
@@ -22,7 +25,7 @@ export default function Home() {
         console.log(res.data);
         setToDos(res.data);
       });
-  }, [session?.user ,updateUI]);
+  }, [session?.user, updateUI]);
 
   if (!session?.user) {
     return <Login />;
@@ -60,8 +63,13 @@ export default function Home() {
         </button>
       </div>
       <ul className="space-y-4 pt-8">
-        {toDos.map((item: any) => (
-          <ToDo key={item._id} id={item._id} text={item.toDo} setUpdateUI={setUpdateUI}/>
+        {toDos.map((item: ToDoItem) => (
+          <ToDo
+            key={item._id}
+            id={item._id}
+            text={item.toDo}
+            setUpdateUI={setUpdateUI}
+          />
         ))}
       </ul>
     </main>

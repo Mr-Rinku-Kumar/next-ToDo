@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const NextConfig = {
   images: {
     domains: ["lh3.googleusercontent.com"],
   },
+  experimental: {
+    optimizeCss: true,  // CSS optimization के लिए
+    scrollRestoration: true, // Scroll position restore करने के लिए
+  },
 };
 
-export default nextConfig;
+export default NextConfig;
+
